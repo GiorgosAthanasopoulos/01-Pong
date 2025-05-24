@@ -54,10 +54,14 @@ horizontal_alignment = 2
 
 [node name="Paddle" parent="Entities" instance=ExtResource("2_dxrkv")]
 position = Vector2(50, 360)
+ai = false
 
 [node name="Paddle2" parent="Entities" instance=ExtResource("2_dxrkv")]
 position = Vector2(1230, 360)
 left = false
+ai_perfect = false
+reaction_delay = 0.3
+error_margin = 30.0
 
 [node name="Wall" parent="Entities" instance=ExtResource("3_4fuuu")]
 position = Vector2(640, 2.5)

@@ -51,9 +51,6 @@ func _physics_process(delta: float) -> void:
 
 
 func launch_ball():
-    if Global.paused:
-        return
-
     randomize()
     var direction = randi() % 2
     var angle_deg: float
