@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1hklrw45yjd4"]
+
+[ext_resource type="Script" uid="uid://bbowmoknjxtxb" path="res://game/game.gd" id="1_4fuuu"]
+[ext_resource type="PackedScene" uid="uid://b1kgjud6cfmuq" path="res://paddle/paddle.tscn" id="2_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://bg3v6hvjj6mpe" path="res://wall/wall.tscn" id="3_4fuuu"]
+[ext_resource type="PackedScene" uid="uid://b2pd6q6scjqqe" path="res://goal/goal.tscn" id="3_h7iqs"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_4fuuu")
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+layer = -1
+
+[node name="BGColorRect" type="ColorRect" parent="UI/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DividerColorRect" type="ColorRect" parent="UI/CanvasLayer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 1)
+
+[node name="Score" type="Label" parent="UI/CanvasLayer"]
+offset_right = 119.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="Score2" type="Label" parent="UI/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -119.0
+offset_bottom = 69.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Paddle" parent="Entities" instance=ExtResource("2_dxrkv")]
+position = Vector2(50, 360)
+
+[node name="Paddle2" parent="Entities" instance=ExtResource("2_dxrkv")]
+position = Vector2(1230, 360)
+left = false
+
+[node name="Wall" parent="Entities" instance=ExtResource("3_4fuuu")]
+position = Vector2(640, 2.5)
+
+[node name="Wall2" parent="Entities" instance=ExtResource("3_4fuuu")]
+position = Vector2(640, 717.5)
+
+[node name="Goal" parent="Entities" instance=ExtResource("3_h7iqs")]
+position = Vector2(0, 360)
+
+[node name="Goal2" parent="Entities" instance=ExtResource("3_h7iqs")]
+position = Vector2(1278, 360)

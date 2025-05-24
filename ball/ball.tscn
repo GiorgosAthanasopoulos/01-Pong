@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://duam4rign8jmu"]
+
+[ext_resource type="Script" uid="uid://mv7ftp7bp6n4" path="res://ball/ball.gd" id="1_6plaf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6plaf"]
+radius = 25.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6plaf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pwunn"]
+material = SubResource("StandardMaterial3D_6plaf")
+
+[node name="Ball" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_6plaf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6plaf")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-0.499999, 0.500008)
+scale = Vector2(49.0556, 51)
+mesh = SubResource("SphereMesh_pwunn")
