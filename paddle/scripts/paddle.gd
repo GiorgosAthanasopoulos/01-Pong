@@ -15,6 +15,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+    if Global.paused:
+        return
+
     var movement: Vector2 = Vector2.ZERO
 
     if left:

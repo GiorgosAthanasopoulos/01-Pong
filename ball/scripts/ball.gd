@@ -6,23 +6,22 @@ extends RigidBody2D
 @export var ball_toss_angle_threshold_deg: int = 75
 
 
+@onready var sfx_audio_stream_player_2d: AudioStreamPlayer2D = $SFXAudioStreamPlayer2D
+
+
 var angle: int
 signal goal_left
 signal goal_right
-signal restart
 
 
 func _ready() -> void:
     launch_ball()
 
 
-func _process(delta: float) -> void:
-    if Input.is_action_just_pressed(&"restart"):
-        emit_signal(&"restart")
-        queue_free()
-
-
 func _physics_process(delta: float) -> void:
+    if Global.paused:
+        return
+
     speed += delta * speed_increment
 
     var movement: Vector2 = Vector2.ZERO
@@ -36,6 +35,10 @@ func _physics_process(delta: float) -> void:
     var collider: PhysicsBody2D = collision.get_collider()
     if not is_instance_valid(collider):
         return
+
+    sfx_audio_stream_player_2d.stream = Audio.get_ball_hit_audio()
+    sfx_audio_stream_player_2d.play()
+
     if collider.name.contains(&"Goal"):
         emit_signal(&"goal_right" if collider.name.contains(&"Goal2") else &"goal_left")
         queue_free()
@@ -48,13 +51,16 @@ func _physics_process(delta: float) -> void:
 
 
 func launch_ball():
+    if Global.paused:
+        return
+
     randomize()
     var direction = randi() % 2
     var angle_deg: float
 
     if direction == 0:
-        angle_deg = randf_range(ball_toss_angle_threshold_deg, 180 - ball_toss_angle_threshold_deg)
+        angle_deg = randf_range(45, 135)
     else:
-        angle_deg = randf_range(180 + ball_toss_angle_threshold_deg, 360 - ball_toss_angle_threshold_deg)
+        angle_deg = randf_range(225, 315)
 
     angle = deg_to_rad(angle_deg)
