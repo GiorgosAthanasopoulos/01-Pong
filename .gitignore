@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+01_Pong.sh
+01_Pong.x86_64

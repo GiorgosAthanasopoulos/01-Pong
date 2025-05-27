@@ -16,6 +16,7 @@ s"
 config/version="1.0.0"
 run/main_scene="uid://d1hklrw45yjd4"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/flush_stdout_on_print=true
 config/icon="res://assets/icons/launcher/icon.svg"
 
 [audio]
@@ -31,6 +32,7 @@ Audio="*res://audio/audio.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [input]
